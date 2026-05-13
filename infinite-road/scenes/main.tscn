@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c2knov2n1rqaq"]
+
+[ext_resource type="PackedScene" uid="uid://cab3ekswmv1ob" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://bp3ttj4b0f4h" path="res://scripts/camera_ring.gd" id="2_0wfyh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
+size = Vector3(20, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5qli"]
+size = Vector3(10, 0.5, 50)
+
+[node name="Main" type="Node3D" unique_id=1554634410]
+
+[node name="Player" parent="." unique_id=327042463 instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=397382942]
+transform = Transform3D(0.8660254, -0.35355338, 0.35355338, 0, 0.70710677, 0.70710677, -0.5, -0.6123724, 0.6123724, 0, 0, 0)
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1486694421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1130313861]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 100, 0.43909872, -2.6134744, 1.208349)
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1702092209]
+transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("BoxShape3D_o5qli")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
+
+[node name="CameraRing" type="Node3D" parent="." unique_id=834361875 node_paths=PackedStringArray("player")]
+script = ExtResource("2_0wfyh")
+player = NodePath("../Player")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRing" unique_id=1419483341]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 3, 8)
+current = true
