@@ -11,14 +11,20 @@ var lateral_speed := 10.0
 # --- Física ---
 var gravity := 20.0
 var jump_force := 8.0
+var is_dead := false
 
 func _ready():
 	target_x = position.x
 
 func _physics_process(delta):
+
+	if is_dead:
+		return
+
 	handle_input()
 	apply_movement(delta)
-
+	check_collision()
+	
 func handle_input():
 	if Input.is_action_just_pressed("move_left"):
 		lane_index -= 1
@@ -44,3 +50,21 @@ func apply_movement(delta):
 		velocity.y -= gravity * delta
 
 	move_and_slide()
+	
+func check_collision():
+	for i in get_slide_collision_count():
+
+		var collision = get_slide_collision(i)
+
+		if collision.get_collider().is_in_group("obstacle"):
+			
+			game_over()
+			
+func game_over():
+
+	if is_dead:
+		return
+
+	is_dead = true
+
+	print("GAME OVER")

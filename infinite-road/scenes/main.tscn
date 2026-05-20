@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cab3ekswmv1ob" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://bp3ttj4b0f4h" path="res://scripts/camera_ring.gd" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://vp0o406453px" path="res://scenes/obstacle.tscn" id="3_sugp2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
 size = Vector3(20, 1, 100)
@@ -36,3 +37,6 @@ player = NodePath("../Player")
 [node name="Camera3D" type="Camera3D" parent="CameraRing" unique_id=1419483341]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 3, 8)
 current = true
+
+[node name="Obstacle" parent="." unique_id=1652062270 groups=["obstacle"] instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
