@@ -46,3 +46,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("4_jyhfs")
 obstacle_scene = ExtResource("3_sugp2")
 player = NodePath("../Player")
+metadata/_edit_group_ = true
