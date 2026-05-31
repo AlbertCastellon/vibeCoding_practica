@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cab3ekswmv1ob" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://bp3ttj4b0f4h" path="res://scripts/camera_ring.gd" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://vp0o406453px" path="res://scenes/obstacle.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://ps15f8aekb04" path="res://scripts/obstacle_spawner.gd" id="4_jyhfs"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
 size = Vector3(20, 1, 100)
@@ -40,3 +41,8 @@ current = true
 
 [node name="Obstacle" parent="." unique_id=1652062270 groups=["obstacle"] instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="ObstacleSpawner" type="Node3D" parent="." unique_id=558380998 node_paths=PackedStringArray("player")]
+script = ExtResource("4_jyhfs")
+obstacle_scene = ExtResource("3_sugp2")
+player = NodePath("../Player")
